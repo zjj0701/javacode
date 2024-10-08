@@ -399,7 +399,7 @@ public class MainTest {
                 break;
             }
             path.add(candidates[i]);
-            backTracking_all_num(candidates, target, path, sum+candidates[i], i, res);
+            backTracking_all_num(candidates, target, path, sum + candidates[i], i, res);
             path.remove(path.size() - 1);
 
         }
@@ -417,6 +417,7 @@ public class MainTest {
         res.add(new ArrayList<>());
         res.add(new ArrayList<>(path));
     }
+
     public static void main(String[] args) {
         int[] r = {2, 3, 6, 7};
         combinationSum(r, 7);
