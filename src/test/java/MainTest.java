@@ -418,6 +418,42 @@ public class MainTest {
         res.add(new ArrayList<>(path));
     }
 
+    List<List<Integer>> res1 = new ArrayList<>();
+    LinkedList<Integer> path1 = new LinkedList<>();
+    boolean[] used;
+    int sum = 0;
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        used = new boolean[candidates.length];
+        Arrays.fill(used, false);
+        Arrays.sort(candidates);
+        backTrackingCombinationSum2(candidates, target, 0);
+        return res1;
+    }
+
+    private void backTrackingCombinationSum2(int[] candidates, int target, int startIndex) {
+        if (sum == target) {
+            res1.add(new ArrayList<>(path1));
+        }
+        for (int i = startIndex; i < candidates.length; i++) {
+            if (candidates[i] + sum > target) {
+                break;
+            }
+
+            if (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1]) {
+                continue;
+            }
+
+            used[i] = true;
+            sum += candidates[i];
+            path1.add(candidates[i]);
+            backTrackingCombinationSum2(candidates, target, i + 1);
+            used[i] = false;
+            sum -= candidates[i];
+            path1.removeLast();
+        }
+    }
+
     public static void main(String[] args) {
         int[] r = {2, 3, 6, 7};
         combinationSum(r, 7);
